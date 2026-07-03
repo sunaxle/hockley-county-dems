@@ -39,7 +39,7 @@
     
     .hub-hero p {
       font-size: 1.2rem;
-      color: #94a3b8;
+      color: var(--text-muted);
       max-width: 800px;
       margin: 0 auto;
       line-height: 1.6;
@@ -49,7 +49,7 @@
       font-family: 'Montserrat', sans-serif;
       font-size: 2rem;
       color: var(--tx-navy);
-      border-bottom: 2px solid rgba(255,255,255,0.1);
+      border-bottom: 2px solid var(--glass-border);
       padding-bottom: 0.5rem;
       margin-bottom: 2rem;
       margin-top: 4rem;
@@ -80,7 +80,7 @@
     }
     
     .inspiration-card p {
-      color: #cbd5e1;
+      color: var(--text-muted);
       font-size: 1.1rem;
       line-height: 1.6;
       margin-bottom: 2rem;
@@ -111,7 +111,7 @@
     
     .path-card {
       background: rgba(30, 41, 59, 0.7);
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid var(--glass-border);
       border-radius: 12px;
       padding: 2rem;
       transition: transform 0.3s ease, border-color 0.3s ease;
@@ -122,7 +122,7 @@
     
     .path-card:hover {
       transform: translateY(-5px);
-      border-color: rgba(255,255,255,0.3);
+      border-color: var(--glass-border);
       background: rgba(30, 41, 59, 0.9);
     }
     
@@ -139,7 +139,7 @@
     }
     
     .path-desc {
-      color: #94a3b8;
+      color: var(--text-muted);
       line-height: 1.5;
       margin-bottom: 2rem;
       flex-grow: 1;
@@ -202,7 +202,7 @@
     }
     
     .resource-text span {
-      color: #94a3b8;
+      color: var(--text-muted);
       font-size: 0.95rem;
     }
   
@@ -211,7 +211,7 @@
       text-align: center;
       padding: 4rem 2rem;
       background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-      color: white;
+      color: var(--tx-navy);
     }
     
     .scenario-header h1 {
@@ -360,7 +360,7 @@
     }
 
     .budget-impact {
-      color: white;
+      color: var(--tx-navy);
       padding: 1.5rem;
       border-radius: 8px;
       text-align: center;
@@ -481,7 +481,7 @@
     .btn-massive {
       display: inline-block;
       background: #2563eb;
-      color: white;
+      color: var(--tx-navy);
       font-family: 'Montserrat', sans-serif;
       font-weight: 800;
       font-size: 1.25rem;
@@ -495,7 +495,7 @@
     .btn-massive:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(37, 99, 235, 0.23);
-      color: white;
+      color: var(--tx-navy);
     }
   
   </style>
@@ -545,13 +545,13 @@
         <div class="nav-item dropdown">
           <span>Action ▼</span>
           <div class="dropdown-content">
-            <div style="padding: 0.5rem 1rem; font-size: 0.75rem; text-transform: uppercase; color: #94a3b8; font-weight: 800; letter-spacing: 1px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 0.25rem;">For Voters</div>
+            <div style="padding: 0.5rem 1rem; font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 800; letter-spacing: 1px; border-bottom: 1px solid var(--glass-border); margin-bottom: 0.25rem;">For Voters</div>
             <a href="elections_101.html" style="color: #60a5fa; font-weight: 800;">Elections 101 FAQ 💡</a>
             <a href="election_operations.html" style="color: #c084fc; font-weight: 800;">Election Operations 📋</a>
             <a href="vbm.html" style="color: #34d399; font-weight: 800;">Vote by Mail 📬</a>
             <a href="vote.html">Voter Resources</a>
             
-            <div style="padding: 0.5rem 1rem; font-size: 0.75rem; text-transform: uppercase; color: #94a3b8; font-weight: 800; letter-spacing: 1px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-top: 0.5rem; margin-bottom: 0.25rem;">For Organizers</div>
+            <div style="padding: 0.5rem 1rem; font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 800; letter-spacing: 1px; border-bottom: 1px solid var(--glass-border); margin-top: 0.5rem; margin-bottom: 0.25rem;">For Organizers</div>
             <a href="chair_onboarding.html" style="color: #fcd34d; font-weight: 800;">Precinct Toolkit 🧰</a>
             <a href="van_support.html" style="color: #38bdf8; font-weight: 600;">VAN Support 💻</a>
             <a href="arena_training.html">The Arena</a>
@@ -709,7 +709,7 @@
 
   
 
-    <hr style="border-color: rgba(255,255,255,0.1); margin: 6rem 0;">
+    <hr style="border-color: var(--glass-border); margin: 6rem 0;">
 
 <!-- Header -->
   <header class="scenario-header">
@@ -912,9 +912,9 @@
   <div class="scenarios-container">
     <!-- Goal 1: $500 -->
     <div class="scenario-card">
-      <div class="scenario-card-header" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white;">
-        <h2 style="color: white; margin: 0;">Goal 1: $500 / Month</h2>
-        <div class="subtitle" style="color: #cbd5e1; margin-top: 0.25rem;">Covers basic operational software, domains, and core infrastructure.</div>
+      <div class="scenario-card-header" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: var(--tx-navy);">
+        <h2 style="color: var(--tx-navy); margin: 0;">Goal 1: $500 / Month</h2>
+        <div class="subtitle" style="color: var(--text-muted); margin-top: 0.25rem;">Covers basic operational software, domains, and core infrastructure.</div>
       </div>
       <div class="scenario-card-body">
         <h4 style="margin: 0 0 1rem 0; color: #334155; font-size: 1.1rem;">How do we get there?</h4>
@@ -937,9 +937,9 @@
 
     <!-- Goal 2: $1,000 -->
     <div class="scenario-card">
-      <div class="scenario-card-header" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white;">
-        <h2 style="color: white; margin: 0;">Goal 2: $1,000 / Month</h2>
-        <div class="subtitle" style="color: #cbd5e1; margin-top: 0.25rem;">Allows for dedicated text banking budgets and county-wide outreach.</div>
+      <div class="scenario-card-header" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: var(--tx-navy);">
+        <h2 style="color: var(--tx-navy); margin: 0;">Goal 2: $1,000 / Month</h2>
+        <div class="subtitle" style="color: var(--text-muted); margin-top: 0.25rem;">Allows for dedicated text banking budgets and county-wide outreach.</div>
       </div>
       <div class="scenario-card-body">
          <h4 style="margin: 0 0 1rem 0; color: #334155; font-size: 1.1rem;">How do we get there?</h4>
