@@ -1,0 +1,17 @@
+{
+  "chair": "Aaron Gonzalez",
+  "chair_title": "County Chair & Parliamentarian",
+  "vice_chair": "Lucidora Perez",
+  "vice_chair_title": "Vice-Chair & Treasurer",
+  "secretary": "Victoria Dodge",
+  "secretary_title": "Secretary & Historian",
+  "social_media": "Anastasia Maldonado",
+  "social_media_title": "Social Media Liaison",
+  "precinct_chairs": [
+    {
+      "name": "Patrice Elmore",
+      "precinct": "Precinct 45",
+      "status": "ACTIVE"
+    }
+  ]
+}

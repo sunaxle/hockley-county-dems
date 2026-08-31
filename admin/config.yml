@@ -1,0 +1,75 @@
+backend:
+  name: github
+  repo: sunaxle/hockley-county-dems
+  branch: main
+  base_url: https://github.com
+  auth_endpoint: auth
+
+media_folder: "images"
+public_folder: "images"
+
+collections:
+  - name: "settings"
+    label: "Site Settings & Contact"
+    files:
+      - file: "data/settings.json"
+        label: "General Settings"
+        name: "settings"
+        fields:
+          - { label: "Phone Number", name: "phone", widget: "string" }
+          - { label: "Email Address", name: "email", widget: "string" }
+          - { label: "ActBlue Donate Link", name: "donate_link", widget: "string" }
+          - { label: "Linktree Link", name: "linktree_link", widget: "string" }
+          - { label: "Precinct Chair Appointment Form Link", name: "appointment_form_link", widget: "string" }
+          - { label: "Ropesville & Precinct 14 Mailing Address", name: "address_ropesville", widget: "string" }
+          - { label: "Levelland Mailing Address", name: "address_levelland", widget: "string" }
+          - label: "Social Media Links"
+            name: "socials"
+            widget: "object"
+            fields:
+              - { label: "Facebook URL", name: "facebook", widget: "string" }
+              - { label: "Instagram URL", name: "instagram", widget: "string" }
+              - { label: "Threads URL", name: "threads", widget: "string" }
+              - { label: "BlueSky URL", name: "bluesky", widget: "string" }
+              - { label: "X (Twitter) URL", name: "x", widget: "string" }
+
+  - name: "leadership"
+    label: "Party Leadership & Officers"
+    files:
+      - file: "data/leadership.json"
+        label: "Executive Committee"
+        name: "leadership"
+        fields:
+          - { label: "County Chair Name", name: "chair", widget: "string" }
+          - { label: "County Chair Title", name: "chair_title", widget: "string" }
+          - { label: "Vice-Chair & Treasurer Name", name: "vice_chair", widget: "string" }
+          - { label: "Vice-Chair & Treasurer Title", name: "vice_chair_title", widget: "string" }
+          - { label: "Secretary & Historian Name", name: "secretary", widget: "string" }
+          - { label: "Secretary & Historian Title", name: "secretary_title", widget: "string" }
+          - { label: "Social Media Liaison Name", name: "social_media", widget: "string" }
+          - { label: "Social Media Liaison Title", name: "social_media_title", widget: "string" }
+          - label: "Precinct Chairs"
+            name: "precinct_chairs"
+            widget: "list"
+            fields:
+              - { label: "Chair Name", name: "name", widget: "string" }
+              - { label: "Precinct Number/Area", name: "precinct", widget: "string" }
+              - { label: "Status", name: "status", widget: "select", options: ["ACTIVE", "VACANT", "PENDING"] }
+
+  - name: "events"
+    label: "Events & Meetings"
+    files:
+      - file: "data/events.json"
+        label: "Upcoming Events List"
+        name: "events"
+        fields:
+          - label: "Events"
+            name: "events"
+            widget: "list"
+            fields:
+              - { label: "Event Title", name: "title", widget: "string" }
+              - { label: "Date", name: "date", widget: "string" }
+              - { label: "Time", name: "time", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "RSVP / Info Link", name: "rsvp_link", widget: "string" }
