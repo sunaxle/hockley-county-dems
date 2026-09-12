@@ -2,8 +2,6 @@ backend:
   name: github
   repo: sunaxle/hockley-county-dems
   branch: main
-  base_url: https://github.com
-  auth_endpoint: auth
 
 media_folder: "images"
 public_folder: "images"

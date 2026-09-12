@@ -6,15 +6,210 @@
   <meta name="robots" content="noindex" />
   <title>Hockley County Dems | Content Manager</title>
   <link rel="icon" type="image/jpeg" href="../images/logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    /* Custom Styling for CMS Header */
-    [class*="AppHeaderContent"] {
-      background: #0f172a !important;
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+    }
+    #login-container {
+      display: flex;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      box-sizing: border-box;
+      background: radial-gradient(circle at top, #1e293b, #0f172a);
+    }
+    .login-card {
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 2.5rem;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      backdrop-filter: blur(12px);
+    }
+    .logo-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 1.25rem;
+      border: 3px solid #38bdf8;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+    }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin: 0 0 0.5rem 0;
+      color: #ffffff;
+    }
+    p.subtitle {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      margin: 0 0 2rem 0;
+      line-height: 1.5;
+    }
+    .input-group {
+      text-align: left;
+      margin-bottom: 1.5rem;
+    }
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 0.5rem;
+    }
+    input[type="password"], input[type="text"] {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid #334155;
+      background: #090d16;
+      color: #f8fafc;
+      font-size: 0.95rem;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    }
+    .btn-login {
+      width: 100%;
+      padding: 0.9rem;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-login:hover {
+      background: #1d4ed8;
+    }
+    .btn-login:active {
+      transform: scale(0.98);
+    }
+    .help-box {
+      margin-top: 1.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.85rem;
+      color: #94a3b8;
+      text-align: left;
+      line-height: 1.5;
+    }
+    .help-box a {
+      color: #38bdf8;
+      text-decoration: underline;
+    }
+    #logout-btn {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      z-index: 99999;
+      background: #dc2626;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      display: none;
+    }
+    #logout-btn:hover {
+      background: #b91c1c;
     }
   </style>
 </head>
 <body>
-  <!-- Include Decap CMS Script -->
-  <script src="https://unpkg.com/decap-cms@^3.1.0/dist/decap-cms.js"></script>
+  <div id="login-container">
+    <div class="login-card">
+      <img src="../images/logo.jpg" alt="Hockley Dems Logo" class="logo-img" />
+      <h1>Hockley County Democrats</h1>
+      <p class="subtitle">Content Management Dashboard</p>
+
+      <form id="token-login-form" onsubmit="handleTokenLogin(event)">
+        <div class="input-group">
+          <label for="gh-token">GitHub Access Token:</label>
+          <input type="password" id="gh-token" placeholder="Paste your GitHub Personal Access Token (ghp_...)" required autocomplete="current-password" />
+        </div>
+        <button type="submit" class="btn-login">🚀 Enter Admin Dashboard</button>
+      </form>
+
+      <div class="help-box">
+        <strong>Need your token?</strong>
+        <ol style="padding-left: 1.25rem; margin: 0.5rem 0 0 0;">
+          <li>Log into GitHub and open <a href="https://github.com/settings/tokens/new?scopes=repo&description=Hockley+Dems+CMS" target="_blank" rel="noopener">Token Generator ➔</a></li>
+          <li>Click the green <strong>"Generate token"</strong> button at the bottom.</li>
+          <li>Copy and paste the token above! (Saved securely in your browser).</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <button id="logout-btn" onclick="handleLogout()">🔒 Log Out of CMS</button>
+
+  <script>
+    function checkAuth() {
+      try {
+        const stored = localStorage.getItem('netlify-cms-user');
+        if (stored) {
+          const user = JSON.parse(stored);
+          if (user && user.token) {
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('logout-btn').style.display = 'block';
+            loadCMS();
+            return true;
+          }
+        }
+      } catch (e) {}
+      document.getElementById('login-container').style.display = 'flex';
+      document.getElementById('logout-btn').style.display = 'none';
+      return false;
+    }
+
+    function handleTokenLogin(e) {
+      e.preventDefault();
+      const token = document.getElementById('gh-token').value.trim();
+      if (!token) return;
+
+      const userSession = {
+        token: token,
+        backendName: 'github'
+      };
+      localStorage.setItem('netlify-cms-user', JSON.stringify(userSession));
+      checkAuth();
+    }
+
+    function handleLogout() {
+      if (confirm('Are you sure you want to log out of the Content Manager?')) {
+        localStorage.removeItem('netlify-cms-user');
+        window.location.reload();
+      }
+    }
+
+    function loadCMS() {
+      if (window.CMS) return;
+      const s = document.createElement('script');
+      s.src = 'https://unpkg.com/decap-cms@^3.1.0/dist/decap-cms.js';
+      document.body.appendChild(s);
+    }
+
+    document.addEventListener('DOMContentLoaded', checkAuth);
+  </script>
 </body>
 </html>
