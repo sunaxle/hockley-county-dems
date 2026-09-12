@@ -3,210 +3,728 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex" />
-  <title>Hockley County Dems | Content Manager</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Party Officer Dashboard | Hockley County Democrats</title>
   <link rel="icon" type="image/jpeg" href="../images/logo.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #151d30;
+      --card-border: #243049;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --success: #10b981;
+      --danger: #ef4444;
+      --input-bg: #090d16;
+    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       padding: 0;
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: #0f172a;
-      color: #f8fafc;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
     }
-    #login-container {
+
+    /* Login Screen */
+    #login-screen {
       display: flex;
       min-height: 100vh;
       align-items: center;
       justify-content: center;
       padding: 1.5rem;
-      box-sizing: border-box;
-      background: radial-gradient(circle at top, #1e293b, #0f172a);
+      background: radial-gradient(circle at top, #1e293b, #0b0f19);
     }
     .login-card {
-      background: rgba(30, 41, 59, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
       border-radius: 1rem;
       padding: 2.5rem;
-      max-width: 480px;
+      max-width: 460px;
       width: 100%;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
       text-align: center;
-      backdrop-filter: blur(12px);
     }
     .logo-img {
       width: 80px;
       height: 80px;
       border-radius: 50%;
       margin-bottom: 1.25rem;
-      border: 3px solid #38bdf8;
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
     }
-    h1 {
-      font-size: 1.5rem;
-      font-weight: 800;
-      margin: 0 0 0.5rem 0;
-      color: #ffffff;
-    }
-    p.subtitle {
-      color: #94a3b8;
-      font-size: 0.95rem;
-      margin: 0 0 2rem 0;
-      line-height: 1.5;
-    }
-    .input-group {
-      text-align: left;
-      margin-bottom: 1.5rem;
-    }
-    label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #cbd5e1;
-      margin-bottom: 0.5rem;
-    }
-    input[type="password"], input[type="text"] {
+    h1 { font-size: 1.5rem; font-weight: 800; margin: 0 0 0.5rem 0; color: #fff; }
+    p.subtitle { color: var(--text-muted); font-size: 0.95rem; margin: 0 0 2rem 0; }
+    .input-group { text-align: left; margin-bottom: 1.25rem; }
+    label { display: block; font-size: 0.85rem; font-weight: 600; color: #cbd5e1; margin-bottom: 0.5rem; }
+    input[type="text"], input[type="password"], textarea, select {
       width: 100%;
-      padding: 0.85rem 1rem;
+      padding: 0.8rem 1rem;
       border-radius: 0.5rem;
-      border: 1px solid #334155;
-      background: #090d16;
-      color: #f8fafc;
+      border: 1px solid var(--card-border);
+      background: var(--input-bg);
+      color: #fff;
       font-size: 0.95rem;
-      box-sizing: border-box;
+      font-family: inherit;
       outline: none;
       transition: border-color 0.2s;
     }
-    input:focus {
-      border-color: #38bdf8;
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--accent);
       box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
     }
-    .btn-login {
-      width: 100%;
-      padding: 0.9rem;
-      background: #2563eb;
-      color: white;
-      border: none;
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.5rem;
       border-radius: 0.5rem;
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 700;
       cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-    }
-    .btn-login:hover {
-      background: #1d4ed8;
-    }
-    .btn-login:active {
-      transform: scale(0.98);
-    }
-    .help-box {
-      margin-top: 1.75rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 0.85rem;
-      color: #94a3b8;
-      text-align: left;
-      line-height: 1.5;
-    }
-    .help-box a {
-      color: #38bdf8;
-      text-decoration: underline;
-    }
-    #logout-btn {
-      position: fixed;
-      bottom: 1rem;
-      right: 1rem;
-      z-index: 99999;
-      background: #dc2626;
-      color: white;
       border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 0.375rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      display: none;
+      transition: all 0.2s;
+      text-decoration: none;
     }
-    #logout-btn:hover {
-      background: #b91c1c;
+    .btn-primary { background: var(--primary); color: #fff; width: 100%; }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-success { background: var(--success); color: #fff; }
+    .btn-success:hover { background: #059669; }
+    .btn-danger { background: var(--danger); color: #fff; padding: 0.5rem 0.75rem; font-size: 0.85rem; }
+    .btn-outline { background: transparent; border: 1px solid var(--card-border); color: var(--text-muted); }
+    .btn-outline:hover { background: rgba(255,255,255,0.05); color: #fff; }
+
+    /* Dashboard Layout */
+    #dashboard-screen {
+      display: none;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+    .header {
+      background: #0f172a;
+      border-bottom: 1px solid var(--card-border);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .header-title { font-weight: 800; font-size: 1.15rem; color: #fff; }
+    .header-badge { background: rgba(56, 189, 248, 0.15); color: var(--accent); font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.6rem; border-radius: 9999px; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .header-right { display: flex; align-items: center; gap: 1rem; }
+
+    .main-container {
+      display: flex;
+      flex: 1;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      gap: 2rem;
+    }
+    .sidebar {
+      width: 240px;
+      flex-shrink: 0;
+    }
+    .nav-tab {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      border-radius: 0.5rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      transition: all 0.2s;
+    }
+    .nav-tab:hover { background: rgba(255, 255, 255, 0.05); color: #fff; }
+    .nav-tab.active { background: var(--primary); color: #fff; }
+
+    .content-area {
+      flex: 1;
+      min-width: 0;
+    }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+    .panel {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 0.75rem;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .panel-title { font-size: 1.2rem; font-weight: 800; margin: 0 0 1.25rem 0; color: #fff; display: flex; align-items: center; justify-content: space-between; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    @media (max-width: 768px) {
+      .main-container { flex-direction: column; }
+      .sidebar { width: 100%; display: flex; gap: 0.5rem; overflow-x: auto; }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    .table-container { overflow-x: auto; margin-top: 1rem; }
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th { padding: 0.75rem 1rem; background: rgba(0,0,0,0.2); font-size: 0.85rem; color: var(--text-muted); border-bottom: 1px solid var(--card-border); }
+    td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--card-border); font-size: 0.9rem; }
+
+    /* Toast Notification */
+    #toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #10b981;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 700;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 99999;
+      animation: slideIn 0.3s ease-out;
+    }
+    @keyframes slideIn {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <div id="login-container">
-    <div class="login-card">
-      <img src="../images/logo.jpg" alt="Hockley Dems Logo" class="logo-img" />
-      <h1>Hockley County Democrats</h1>
-      <p class="subtitle">Content Management Dashboard</p>
 
-      <form id="token-login-form" onsubmit="handleTokenLogin(event)">
+  <!-- 1. LOGIN SCREEN -->
+  <div id="login-screen">
+    <div class="login-card">
+      <img src="../images/logo.jpg" alt="Logo" class="logo-img" />
+      <h1>Hockley County Democrats</h1>
+      <p class="subtitle">Officer & Chair Content Management Portal</p>
+
+      <form id="token-form" onsubmit="handleLogin(event)">
         <div class="input-group">
-          <label for="gh-token">GitHub Access Token:</label>
-          <input type="password" id="gh-token" placeholder="Paste your GitHub Personal Access Token (ghp_...)" required autocomplete="current-password" />
+          <label for="token-input">GitHub Access Token:</label>
+          <input type="password" id="token-input" placeholder="Paste your GitHub Personal Access Token (ghp_...)" required />
         </div>
-        <button type="submit" class="btn-login">🚀 Enter Admin Dashboard</button>
+        <button type="submit" class="btn btn-primary" id="login-btn">
+          <span>🚀 Log In to Dashboard</span>
+        </button>
       </form>
 
-      <div class="help-box">
-        <strong>Need your token?</strong>
-        <ol style="padding-left: 1.25rem; margin: 0.5rem 0 0 0;">
-          <li>Log into GitHub and open <a href="https://github.com/settings/tokens/new?scopes=repo&description=Hockley+Dems+CMS" target="_blank" rel="noopener">Token Generator ➔</a></li>
-          <li>Click the green <strong>"Generate token"</strong> button at the bottom.</li>
-          <li>Copy and paste the token above! (Saved securely in your browser).</li>
-        </ol>
+      <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--card-border); font-size: 0.85rem; color: var(--text-muted); text-align: left; line-height: 1.5;">
+        <strong>How to get access:</strong>
+        <p style="margin: 0.4rem 0;">You can use your GitHub Personal Access Token. Once entered, your browser remembers your session securely.</p>
       </div>
     </div>
   </div>
 
-  <button id="logout-btn" onclick="handleLogout()">🔒 Log Out of CMS</button>
+  <!-- 2. DASHBOARD SCREEN -->
+  <div id="dashboard-screen">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <img src="../images/logo.jpg" alt="Logo" style="width: 36px; height: 36px; border-radius: 50%;" />
+        <span class="header-title">Hockley Dems Admin</span>
+        <span class="header-badge" id="user-badge">Logged In</span>
+      </div>
+      <div class="header-right">
+        <a href="../index.html" target="_blank" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.5rem 1rem;">🌐 View Live Site</a>
+        <button onclick="saveAllChanges()" class="btn btn-success" id="save-all-btn">💾 Save & Publish Changes</button>
+        <button onclick="handleLogout()" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.5rem 0.75rem;">🔒 Log Out</button>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+      <!-- Sidebar Navigation -->
+      <div class="sidebar">
+        <div class="nav-tab active" onclick="switchTab('leadership')">🏛️ Party Leadership</div>
+        <div class="nav-tab" onclick="switchTab('settings')">⚙️ Site Settings & Contact</div>
+        <div class="nav-tab" onclick="switchTab('events')">📅 Events & Meetings</div>
+      </div>
+
+      <!-- Content Area -->
+      <div class="content-area">
+        
+        <!-- Tab 1: Leadership -->
+        <div id="tab-leadership" class="tab-pane active">
+          <div class="panel">
+            <div class="panel-title">County Executive Committee (CEC) Officers</div>
+            <div class="grid-2">
+              <div class="input-group">
+                <label>County Chair Name</label>
+                <input type="text" id="lead-chair" />
+              </div>
+              <div class="input-group">
+                <label>County Chair Title</label>
+                <input type="text" id="lead-chair-title" />
+              </div>
+              <div class="input-group">
+                <label>Vice-Chair & Treasurer Name</label>
+                <input type="text" id="lead-vice" />
+              </div>
+              <div class="input-group">
+                <label>Vice-Chair Title</label>
+                <input type="text" id="lead-vice-title" />
+              </div>
+              <div class="input-group">
+                <label>Secretary & Historian Name</label>
+                <input type="text" id="lead-sec" />
+              </div>
+              <div class="input-group">
+                <label>Secretary Title</label>
+                <input type="text" id="lead-sec-title" />
+              </div>
+              <div class="input-group">
+                <label>Social Media Liaison Name</label>
+                <input type="text" id="lead-social" />
+              </div>
+              <div class="input-group">
+                <label>Social Media Liaison Title</label>
+                <input type="text" id="lead-social-title" />
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title">
+              <span>Precinct Chairs Roster</span>
+              <button onclick="addPrecinctChair()" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">➕ Add Precinct Chair</button>
+            </div>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Precinct / Area</th>
+                    <th>Chair Name</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="precinct-chairs-tbody">
+                  <!-- Injected dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Settings -->
+        <div id="tab-settings" class="tab-pane">
+          <div class="panel">
+            <div class="panel-title">General Contact Info & Official Links</div>
+            <div class="grid-2">
+              <div class="input-group">
+                <label>Contact Phone Number</label>
+                <input type="text" id="set-phone" />
+              </div>
+              <div class="input-group">
+                <label>Party Email Address</label>
+                <input type="text" id="set-email" />
+              </div>
+              <div class="input-group">
+                <label>ActBlue Donation Link</label>
+                <input type="text" id="set-donate" />
+              </div>
+              <div class="input-group">
+                <label>Linktree Hub Link</label>
+                <input type="text" id="set-linktree" />
+              </div>
+              <div class="input-group" style="grid-column: span 2;">
+                <label>Precinct Chair Appointment Google Form</label>
+                <input type="text" id="set-app-form" />
+              </div>
+              <div class="input-group">
+                <label>Ropesville & Precinct 14 Address</label>
+                <input type="text" id="set-addr-ropes" />
+              </div>
+              <div class="input-group">
+                <label>Levelland Mailing Address</label>
+                <input type="text" id="set-addr-level" />
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title">Social Media Channels</div>
+            <div class="grid-2">
+              <div class="input-group">
+                <label>Facebook Page URL</label>
+                <input type="text" id="soc-fb" />
+              </div>
+              <div class="input-group">
+                <label>Instagram URL</label>
+                <input type="text" id="soc-ig" />
+              </div>
+              <div class="input-group">
+                <label>Threads URL</label>
+                <input type="text" id="soc-threads" />
+              </div>
+              <div class="input-group">
+                <label>BlueSky URL</label>
+                <input type="text" id="soc-bsky" />
+              </div>
+              <div class="input-group" style="grid-column: span 2;">
+                <label>X (Twitter) URL</label>
+                <input type="text" id="soc-x" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Events -->
+        <div id="tab-events" class="tab-pane">
+          <div class="panel">
+            <div class="panel-title">
+              <span>Upcoming Events & Meetings</span>
+              <button onclick="addNewEvent()" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">➕ Add Event</button>
+            </div>
+            <div id="events-container">
+              <!-- Injected dynamically -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="toast">✅ Changes Saved & Published Live!</div>
 
   <script>
+    const OWNER = 'sunaxle';
+    const REPO = 'hockley-county-dems';
+    const BRANCH = 'main';
+
+    let currentToken = '';
+    let settingsData = {};
+    let leadershipData = {};
+    let eventsData = [];
+
+    // Sha tracking for updates
+    let settingsSha = '';
+    let leadershipSha = '';
+    let eventsSha = '';
+
     function checkAuth() {
-      try {
-        const stored = localStorage.getItem('netlify-cms-user');
-        if (stored) {
-          const user = JSON.parse(stored);
-          if (user && user.token) {
-            document.getElementById('login-container').style.display = 'none';
-            document.getElementById('logout-btn').style.display = 'block';
-            loadCMS();
-            return true;
-          }
-        }
-      } catch (e) {}
-      document.getElementById('login-container').style.display = 'flex';
-      document.getElementById('logout-btn').style.display = 'none';
-      return false;
+      const token = localStorage.getItem('hockley_admin_token') || localStorage.getItem('netlify-cms-user-token');
+      if (token) {
+        currentToken = token;
+        initDashboard();
+      } else {
+        document.getElementById('login-screen').style.display = 'flex';
+        document.getElementById('dashboard-screen').style.display = 'none';
+      }
     }
 
-    function handleTokenLogin(e) {
+    async function handleLogin(e) {
       e.preventDefault();
-      const token = document.getElementById('gh-token').value.trim();
+      const token = document.getElementById('token-input').value.trim();
       if (!token) return;
 
-      const userSession = {
-        token: token,
-        backendName: 'github'
-      };
-      localStorage.setItem('netlify-cms-user', JSON.stringify(userSession));
-      checkAuth();
+      const btn = document.getElementById('login-btn');
+      btn.innerHTML = 'Verifying token...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('https://api.github.com/user', {
+          headers: {
+            'Authorization': 'Bearer ' + token,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+        if (!res.ok) throw new Error('Invalid token or insufficient permissions');
+        const user = await res.json();
+        
+        localStorage.setItem('hockley_admin_token', token);
+        currentToken = token;
+        document.getElementById('user-badge').textContent = '@' + user.login;
+        initDashboard();
+      } catch (err) {
+        alert('Login failed: ' + err.message);
+        btn.innerHTML = '🚀 Log In to Dashboard';
+        btn.disabled = false;
+      }
     }
 
     function handleLogout() {
-      if (confirm('Are you sure you want to log out of the Content Manager?')) {
+      if (confirm('Are you sure you want to log out?')) {
+        localStorage.removeItem('hockley_admin_token');
         localStorage.removeItem('netlify-cms-user');
         window.location.reload();
       }
     }
 
-    function loadCMS() {
-      if (window.CMS) return;
-      const s = document.createElement('script');
-      s.src = 'https://unpkg.com/decap-cms@^3.1.0/dist/decap-cms.js';
-      document.body.appendChild(s);
+    function switchTab(tabId) {
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+
+      event.target.classList.add('active');
+      document.getElementById('tab-' + tabId).classList.add('active');
+    }
+
+    async function ghGet(path) {
+      const res = await fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + path + '?ref=' + BRANCH, {
+        headers: {
+          'Authorization': 'Bearer ' + currentToken,
+          'Accept': 'application/vnd.github.v3+json'
+        }
+      });
+      if (!res.ok) throw new Error('Failed to fetch ' + path);
+      const data = await res.json();
+      const content = decodeURIComponent(escape(atob(data.content)));
+      return { json: JSON.parse(content), sha: data.sha };
+    }
+
+    async function ghPut(path, contentObj, sha, message) {
+      const contentStr = btoa(unescape(encodeURIComponent(JSON.stringify(contentObj, null, 2))));
+      const res = await fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + path, {
+        method: 'PUT',
+        headers: {
+          'Authorization': 'Bearer ' + currentToken,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: message,
+          content: contentStr,
+          sha: sha,
+          branch: BRANCH
+        })
+      });
+      if (!res.ok) {
+        const err = await res.text();
+        throw new Error('Failed to update ' + path + ': ' + err);
+      }
+      return await res.json();
+    }
+
+    async function initDashboard() {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('dashboard-screen').style.display = 'flex';
+
+      try {
+        // Load data
+        const [s, l, e] = await Promise.all([
+          ghGet('data/settings.json'),
+          ghGet('data/leadership.json'),
+          ghGet('data/events.json')
+        ]);
+
+        settingsData = s.json;
+        settingsSha = s.sha;
+
+        leadershipData = l.json;
+        leadershipSha = l.sha;
+
+        eventsData = Array.isArray(e.json) ? e.json : (e.json.events || []);
+        eventsSha = e.sha;
+
+        populateForm();
+      } catch (err) {
+        console.error('Error loading data:', err);
+        alert('Could not load site data from GitHub: ' + err.message);
+      }
+    }
+
+    function populateForm() {
+      // Leadership
+      document.getElementById('lead-chair').value = leadershipData.chair || '';
+      document.getElementById('lead-chair-title').value = leadershipData.chair_title || '';
+      document.getElementById('lead-vice').value = leadershipData.vice_chair || '';
+      document.getElementById('lead-vice-title').value = leadershipData.vice_chair_title || '';
+      document.getElementById('lead-sec').value = leadershipData.secretary || '';
+      document.getElementById('lead-sec-title').value = leadershipData.secretary_title || '';
+      document.getElementById('lead-social').value = leadershipData.social_media || '';
+      document.getElementById('lead-social-title').value = leadershipData.social_media_title || '';
+
+      renderPrecinctChairs();
+
+      // Settings
+      document.getElementById('set-phone').value = settingsData.phone || '';
+      document.getElementById('set-email').value = settingsData.email || '';
+      document.getElementById('set-donate').value = settingsData.donate_link || '';
+      document.getElementById('set-linktree').value = settingsData.linktree_link || '';
+      document.getElementById('set-app-form').value = settingsData.appointment_form_link || '';
+      document.getElementById('set-addr-ropes').value = settingsData.address_ropesville || '';
+      document.getElementById('set-addr-level').value = settingsData.address_levelland || '';
+
+      const soc = settingsData.socials || {};
+      document.getElementById('soc-fb').value = soc.facebook || '';
+      document.getElementById('soc-ig').value = soc.instagram || '';
+      document.getElementById('soc-threads').value = soc.threads || '';
+      document.getElementById('soc-bsky').value = soc.bluesky || '';
+      document.getElementById('soc-x').value = soc.x || '';
+
+      renderEvents();
+    }
+
+    function renderPrecinctChairs() {
+      const tbody = document.getElementById('precinct-chairs-tbody');
+      tbody.innerHTML = '';
+
+      const list = leadershipData.precinct_chairs || [];
+      list.forEach((p, idx) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><input type="text" value="${p.precinct || ''}" onchange="leadershipData.precinct_chairs[${idx}].precinct = this.value" style="padding: 0.4rem 0.6rem;" /></td>
+          <td><input type="text" value="${p.name || ''}" onchange="leadershipData.precinct_chairs[${idx}].name = this.value" style="padding: 0.4rem 0.6rem;" /></td>
+          <td>
+            <select onchange="leadershipData.precinct_chairs[${idx}].status = this.value" style="padding: 0.4rem 0.6rem;">
+              <option value="ACTIVE" ${p.status === 'ACTIVE' ? 'selected' : ''}>ACTIVE</option>
+              <option value="VACANT" ${p.status === 'VACANT' ? 'selected' : ''}>VACANT</option>
+              <option value="PENDING" ${p.status === 'PENDING' ? 'selected' : ''}>PENDING</option>
+            </select>
+          </td>
+          <td>
+            <button onclick="deletePrecinctChair(${idx})" class="btn btn-danger">🗑️ Remove</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function addPrecinctChair() {
+      if (!leadershipData.precinct_chairs) leadershipData.precinct_chairs = [];
+      leadershipData.precinct_chairs.push({ precinct: 'Precinct ', name: '', status: 'ACTIVE' });
+      renderPrecinctChairs();
+    }
+
+    function deletePrecinctChair(idx) {
+      leadershipData.precinct_chairs.splice(idx, 1);
+      renderPrecinctChairs();
+    }
+
+    function renderEvents() {
+      const container = document.getElementById('events-container');
+      container.innerHTML = '';
+
+      if (!eventsData || eventsData.length === 0) {
+        container.innerHTML = '<p style="color: var(--text-muted);">No events listed yet. Click "+ Add Event" above.</p>';
+        return;
+      }
+
+      eventsData.forEach((ev, idx) => {
+        const card = document.createElement('div');
+        card.style = 'background: rgba(0,0,0,0.25); border: 1px solid var(--card-border); border-radius: 0.5rem; padding: 1.25rem; margin-bottom: 1rem;';
+        card.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <strong style="color: var(--accent); font-size: 1.05rem;">Event #${idx + 1}</strong>
+            <button onclick="deleteEvent(${idx})" class="btn btn-danger">🗑️ Delete Event</button>
+          </div>
+          <div class="grid-2">
+            <div class="input-group">
+              <label>Event Title</label>
+              <input type="text" value="${ev.title || ''}" onchange="eventsData[${idx}].title = this.value" />
+            </div>
+            <div class="input-group">
+              <label>Date</label>
+              <input type="text" value="${ev.date || ''}" onchange="eventsData[${idx}].date = this.value" placeholder="e.g. Tuesday, Oct 14" />
+            </div>
+            <div class="input-group">
+              <label>Time</label>
+              <input type="text" value="${ev.time || ''}" onchange="eventsData[${idx}].time = this.value" placeholder="e.g. 6:30 PM CST" />
+            </div>
+            <div class="input-group">
+              <label>Location</label>
+              <input type="text" value="${ev.location || ''}" onchange="eventsData[${idx}].location = this.value" placeholder="e.g. Levelland Community Center" />
+            </div>
+            <div class="input-group" style="grid-column: span 2;">
+              <label>RSVP / Action Link</label>
+              <input type="text" value="${ev.rsvp_link || ''}" onchange="eventsData[${idx}].rsvp_link = this.value" placeholder="https://linktr.ee/..." />
+            </div>
+            <div class="input-group" style="grid-column: span 2;">
+              <label>Description</label>
+              <textarea rows="3" onchange="eventsData[${idx}].description = this.value">${ev.description || ''}</textarea>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function addNewEvent() {
+      eventsData.push({
+        title: 'New Meeting / Event',
+        date: '',
+        time: '',
+        location: '',
+        description: '',
+        rsvp_link: ''
+      });
+      renderEvents();
+    }
+
+    function deleteEvent(idx) {
+      eventsData.splice(idx, 1);
+      renderEvents();
+    }
+
+    async function saveAllChanges() {
+      const btn = document.getElementById('save-all-btn');
+      btn.innerHTML = '⏳ Publishing to Website...';
+      btn.disabled = true;
+
+      try {
+        // Collect form values
+        leadershipData.chair = document.getElementById('lead-chair').value;
+        leadershipData.chair_title = document.getElementById('lead-chair-title').value;
+        leadershipData.vice_chair = document.getElementById('lead-vice').value;
+        leadershipData.vice_chair_title = document.getElementById('lead-vice-title').value;
+        leadershipData.secretary = document.getElementById('lead-sec').value;
+        leadershipData.secretary_title = document.getElementById('lead-sec-title').value;
+        leadershipData.social_media = document.getElementById('lead-social').value;
+        leadershipData.social_media_title = document.getElementById('lead-social-title').value;
+
+        settingsData.phone = document.getElementById('set-phone').value;
+        settingsData.email = document.getElementById('set-email').value;
+        settingsData.donate_link = document.getElementById('set-donate').value;
+        settingsData.linktree_link = document.getElementById('set-linktree').value;
+        settingsData.appointment_form_link = document.getElementById('set-app-form').value;
+        settingsData.address_ropesville = document.getElementById('set-addr-ropes').value;
+        settingsData.address_levelland = document.getElementById('set-addr-level').value;
+
+        settingsData.socials = {
+          facebook: document.getElementById('soc-fb').value,
+          instagram: document.getElementById('soc-ig').value,
+          threads: document.getElementById('soc-threads').value,
+          bluesky: document.getElementById('soc-bsky').value,
+          x: document.getElementById('soc-x').value
+        };
+
+        // Push updates to GitHub
+        const [resS, resL, resE] = await Promise.all([
+          ghPut('data/settings.json', settingsData, settingsSha, 'Update site settings via Officer Dashboard'),
+          ghPut('data/leadership.json', leadershipData, leadershipSha, 'Update leadership roster via Officer Dashboard'),
+          ghPut('data/events.json', eventsData, eventsSha, 'Update events via Officer Dashboard')
+        ]);
+
+        settingsSha = resS.content.sha;
+        leadershipSha = resL.content.sha;
+        eventsSha = resE.content.sha;
+
+        // Show toast
+        const toast = document.getElementById('toast');
+        toast.style.display = 'block';
+        setTimeout(() => { toast.style.display = 'none'; }, 4000);
+
+        btn.innerHTML = '✅ Published Live!';
+        setTimeout(() => {
+          btn.innerHTML = '💾 Save & Publish Changes';
+          btn.disabled = false;
+        }, 2000);
+      } catch (err) {
+        alert('Failed to publish: ' + err.message);
+        btn.innerHTML = '💾 Save & Publish Changes';
+        btn.disabled = false;
+      }
     }
 
     document.addEventListener('DOMContentLoaded', checkAuth);
