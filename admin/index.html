@@ -18,6 +18,7 @@
       --text: #f8fafc;
       --text-muted: #94a3b8;
       --accent: #38bdf8;
+      --accent-orange: #fd5f00;
       --success: #10b981;
       --danger: #ef4444;
       --input-bg: #090d16;
@@ -93,11 +94,11 @@
       transition: all 0.2s;
       text-decoration: none;
     }
-    .btn-primary { background: var(--primary); color: #fff; width: 100%; }
+    .btn-primary { background: var(--primary); color: #fff; }
     .btn-primary:hover { background: var(--primary-hover); }
     .btn-success { background: var(--success); color: #fff; }
     .btn-success:hover { background: #059669; }
-    .btn-danger { background: var(--danger); color: #fff; padding: 0.5rem 0.75rem; font-size: 0.85rem; }
+    .btn-danger { background: var(--danger); color: #fff; padding: 0.45rem 0.75rem; font-size: 0.85rem; }
     .btn-outline { background: transparent; border: 1px solid var(--card-border); color: var(--text-muted); }
     .btn-outline:hover { background: rgba(255,255,255,0.05); color: #fff; }
 
@@ -126,14 +127,14 @@
     .main-container {
       display: flex;
       flex: 1;
-      max-width: 1200px;
+      max-width: 1240px;
       width: 100%;
       margin: 0 auto;
       padding: 2rem 1.5rem;
       gap: 2rem;
     }
     .sidebar {
-      width: 240px;
+      width: 260px;
       flex-shrink: 0;
     }
     .nav-tab {
@@ -211,16 +212,16 @@
       <form id="token-form" onsubmit="handleLogin(event)">
         <div class="input-group">
           <label for="token-input">GitHub Access Token:</label>
-          <input type="password" id="token-input" placeholder="Paste your GitHub Personal Access Token (ghp_...)" required />
+          <input type="password" id="token-input" placeholder="Paste your GitHub Access Token (ghp_...)" required />
         </div>
-        <button type="submit" class="btn btn-primary" id="login-btn">
+        <button type="submit" class="btn btn-primary" id="login-btn" style="width: 100%;">
           <span>🚀 Log In to Dashboard</span>
         </button>
       </form>
 
       <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--card-border); font-size: 0.85rem; color: var(--text-muted); text-align: left; line-height: 1.5;">
-        <strong>How to get access:</strong>
-        <p style="margin: 0.4rem 0;">You can use your GitHub Personal Access Token. Once entered, your browser remembers your session securely.</p>
+        <strong>How to log in:</strong>
+        <p style="margin: 0.4rem 0;">Paste your Personal Access Token. Once entered, your browser remembers your login automatically.</p>
       </div>
     </div>
   </div>
@@ -236,7 +237,7 @@
       </div>
       <div class="header-right">
         <a href="../index.html" target="_blank" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.5rem 1rem;">🌐 View Live Site</a>
-        <button onclick="saveAllChanges()" class="btn btn-success" id="save-all-btn">💾 Save & Publish Changes</button>
+        <button onclick="saveAllChanges()" class="btn btn-success" id="save-all-btn">💾 Save & Publish Live</button>
         <button onclick="handleLogout()" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.5rem 0.75rem;">🔒 Log Out</button>
       </div>
     </header>
@@ -246,8 +247,12 @@
       <!-- Sidebar Navigation -->
       <div class="sidebar">
         <div class="nav-tab active" onclick="switchTab('leadership')">🏛️ Party Leadership</div>
-        <div class="nav-tab" onclick="switchTab('settings')">⚙️ Site Settings & Contact</div>
+        <div class="nav-tab" onclick="switchTab('banner')">📢 Announcement Banner</div>
+        <div class="nav-tab" onclick="switchTab('articles')">📰 News & Articles</div>
         <div class="nav-tab" onclick="switchTab('events')">📅 Events & Meetings</div>
+        <div class="nav-tab" onclick="switchTab('gallery')">📸 Photo Gallery & Media</div>
+        <div class="nav-tab" onclick="switchTab('pagegen')">📄 Create New Page</div>
+        <div class="nav-tab" onclick="switchTab('settings')">⚙️ Site Settings & Links</div>
       </div>
 
       <!-- Content Area -->
@@ -316,7 +321,126 @@
           </div>
         </div>
 
-        <!-- Tab 2: Settings -->
+        <!-- Tab 2: Announcement Banner -->
+        <div id="tab-banner" class="tab-pane">
+          <div class="panel">
+            <div class="panel-title">Top Site Alert & Meeting Banner</div>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: -0.5rem; margin-bottom: 1.5rem;">Controls the colored announcement bar displayed at the very top of the website.</p>
+            
+            <div class="input-group" style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+              <input type="checkbox" id="banner-active" style="width: 20px; height: 20px;" />
+              <label for="banner-active" style="margin: 0; font-size: 1rem; cursor: pointer;">Display Announcement Banner on Website</label>
+            </div>
+
+            <div class="grid-2">
+              <div class="input-group" style="grid-column: span 2;">
+                <label>Banner Headline / Text</label>
+                <input type="text" id="banner-text" placeholder="e.g. 🚨 TUESDAY EVENT: Precinct Chair Meeting!" />
+              </div>
+              <div class="input-group">
+                <label>Button / Action Text</label>
+                <input type="text" id="banner-btn-text" placeholder="e.g. Click here for details ➔" />
+              </div>
+              <div class="input-group">
+                <label>Link Destination URL</label>
+                <input type="text" id="banner-link" placeholder="e.g. events.html or https://linktr.ee/..." />
+              </div>
+              <div class="input-group">
+                <label>Banner Background Color</label>
+                <select id="banner-color">
+                  <option value="#fd5f00">🟧 Orange (Alert / Meeting)</option>
+                  <option value="#2563eb">🟦 Blue (Official News / Info)</option>
+                  <option value="#10b981">🟩 Green (Voter Registration / Success)</option>
+                  <option value="#dc2626">🟥 Red (Urgent Notice / Deadline)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Articles & News -->
+        <div id="tab-articles" class="tab-pane">
+          <div class="panel">
+            <div class="panel-title">
+              <span>Published Articles & Press Releases</span>
+              <button onclick="addNewArticle()" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">➕ Write New Article</button>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: -0.5rem; margin-bottom: 1.5rem;">Articles appear dynamically on the News & Press page (<code>news.html</code>).</p>
+            <div id="articles-list-container">
+              <!-- Injected dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: Events & Meetings -->
+        <div id="tab-events" class="tab-pane">
+          <div class="panel">
+            <div class="panel-title">
+              <span>Upcoming Events & Meetings</span>
+              <button onclick="addNewEvent()" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">➕ Add Event</button>
+            </div>
+            <div id="events-container">
+              <!-- Injected dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 5: Photo Gallery & Media -->
+        <div id="tab-gallery" class="tab-pane">
+          <div class="panel">
+            <div class="panel-title">
+              <span>Community Photo Gallery</span>
+              <button onclick="addNewPhotoCard()" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">➕ Add Photo Card</button>
+            </div>
+            <div id="gallery-container">
+              <!-- Injected dynamically -->
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title">Upload New Image to GitHub</div>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: -0.5rem; margin-bottom: 1.5rem;">Select an image from your device to upload directly to the website's <code>images/</code> folder.</p>
+            
+            <div class="input-group">
+              <label>Select Image File (JPG, PNG, WEBP):</label>
+              <input type="file" id="image-upload-input" accept="image/*" />
+            </div>
+            <button onclick="uploadImageToGitHub()" class="btn btn-primary" id="upload-img-btn">📤 Upload Image</button>
+            <div id="upload-status" style="margin-top: 1rem; font-size: 0.9rem;"></div>
+          </div>
+        </div>
+
+        <!-- Tab 6: Custom Page Creator -->
+        <div id="tab-pagegen" class="tab-pane">
+          <div class="panel">
+            <div class="panel-title">Create a New Custom Page</div>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: -0.5rem; margin-bottom: 1.5rem;">Instantly generate and publish a new HTML page on the website with standard navigation and styling.</p>
+
+            <div class="grid-2">
+              <div class="input-group">
+                <label>Page Title</label>
+                <input type="text" id="newpage-title" placeholder="e.g. County Party Bylaws & Rules" />
+              </div>
+              <div class="input-group">
+                <label>Page URL Filename</label>
+                <input type="text" id="newpage-slug" placeholder="e.g. bylaws (will be bylaws.html)" />
+              </div>
+              <div class="input-group" style="grid-column: span 2;">
+                <label>Page Header Description / Subtitle</label>
+                <input type="text" id="newpage-desc" placeholder="Brief summary displayed in the header" />
+              </div>
+              <div class="input-group" style="grid-column: span 2;">
+                <label>Page Content (HTML or Plain Text)</label>
+                <textarea rows="8" id="newpage-content" placeholder="Type your text or HTML here..."></textarea>
+              </div>
+            </div>
+
+            <button onclick="publishNewPage()" class="btn btn-primary" id="create-page-btn">🚀 Publish New Page Live</button>
+            <div id="pagegen-status" style="margin-top: 1rem; font-size: 0.9rem;"></div>
+          </div>
+        </div>
+
+        <!-- Tab 7: Settings -->
         <div id="tab-settings" class="tab-pane">
           <div class="panel">
             <div class="panel-title">General Contact Info & Official Links</div>
@@ -379,19 +503,6 @@
           </div>
         </div>
 
-        <!-- Tab 3: Events -->
-        <div id="tab-events" class="tab-pane">
-          <div class="panel">
-            <div class="panel-title">
-              <span>Upcoming Events & Meetings</span>
-              <button onclick="addNewEvent()" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">➕ Add Event</button>
-            </div>
-            <div id="events-container">
-              <!-- Injected dynamically -->
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </div>
@@ -407,14 +518,20 @@
     let settingsData = {};
     let leadershipData = {};
     let eventsData = [];
+    let bannerData = {};
+    let articlesData = [];
+    let galleryData = [];
 
-    // Sha tracking for updates
+    // Sha tracking
     let settingsSha = '';
     let leadershipSha = '';
     let eventsSha = '';
+    let bannerSha = '';
+    let articlesSha = '';
+    let gallerySha = '';
 
     function checkAuth() {
-      const token = localStorage.getItem('hockley_admin_token') || localStorage.getItem('netlify-cms-user-token');
+      const token = localStorage.getItem('hockley_admin_token');
       if (token) {
         currentToken = token;
         initDashboard();
@@ -457,7 +574,6 @@
     function handleLogout() {
       if (confirm('Are you sure you want to log out?')) {
         localStorage.removeItem('hockley_admin_token');
-        localStorage.removeItem('netlify-cms-user');
         window.location.reload();
       }
     }
@@ -511,21 +627,21 @@
       document.getElementById('dashboard-screen').style.display = 'flex';
 
       try {
-        // Load data
-        const [s, l, e] = await Promise.all([
+        const [s, l, e, b, a, g] = await Promise.all([
           ghGet('data/settings.json'),
           ghGet('data/leadership.json'),
-          ghGet('data/events.json')
+          ghGet('data/events.json'),
+          ghGet('data/announcements.json').catch(() => ({ json: {}, sha: '' })),
+          ghGet('data/articles.json').catch(() => ({ json: [], sha: '' })),
+          ghGet('data/gallery.json').catch(() => ({ json: [], sha: '' }))
         ]);
 
-        settingsData = s.json;
-        settingsSha = s.sha;
-
-        leadershipData = l.json;
-        leadershipSha = l.sha;
-
-        eventsData = Array.isArray(e.json) ? e.json : (e.json.events || []);
-        eventsSha = e.sha;
+        settingsData = s.json; settingsSha = s.sha;
+        leadershipData = l.json; leadershipSha = l.sha;
+        eventsData = Array.isArray(e.json) ? e.json : (e.json.events || []); eventsSha = e.sha;
+        bannerData = b.json; bannerSha = b.sha;
+        articlesData = Array.isArray(a.json) ? a.json : []; articlesSha = a.sha;
+        galleryData = Array.isArray(g.json) ? g.json : []; gallerySha = g.sha;
 
         populateForm();
       } catch (err) {
@@ -544,8 +660,23 @@
       document.getElementById('lead-sec-title').value = leadershipData.secretary_title || '';
       document.getElementById('lead-social').value = leadershipData.social_media || '';
       document.getElementById('lead-social-title').value = leadershipData.social_media_title || '';
-
       renderPrecinctChairs();
+
+      // Banner
+      document.getElementById('banner-active').checked = bannerData.active !== false;
+      document.getElementById('banner-text').value = bannerData.text || '';
+      document.getElementById('banner-btn-text').value = bannerData.button_text || '';
+      document.getElementById('banner-link').value = bannerData.link || '';
+      document.getElementById('banner-color').value = bannerData.bg_color || '#fd5f00';
+
+      // Articles
+      renderArticles();
+
+      // Events
+      renderEvents();
+
+      // Gallery
+      renderGallery();
 
       // Settings
       document.getElementById('set-phone').value = settingsData.phone || '';
@@ -562,14 +693,11 @@
       document.getElementById('soc-threads').value = soc.threads || '';
       document.getElementById('soc-bsky').value = soc.bluesky || '';
       document.getElementById('soc-x').value = soc.x || '';
-
-      renderEvents();
     }
 
     function renderPrecinctChairs() {
       const tbody = document.getElementById('precinct-chairs-tbody');
       tbody.innerHTML = '';
-
       const list = leadershipData.precinct_chairs || [];
       list.forEach((p, idx) => {
         const tr = document.createElement('tr');
@@ -583,9 +711,7 @@
               <option value="PENDING" ${p.status === 'PENDING' ? 'selected' : ''}>PENDING</option>
             </select>
           </td>
-          <td>
-            <button onclick="deletePrecinctChair(${idx})" class="btn btn-danger">🗑️ Remove</button>
-          </td>
+          <td><button onclick="deletePrecinctChair(${idx})" class="btn btn-danger">🗑️ Remove</button></td>
         `;
         tbody.appendChild(tr);
       });
@@ -602,15 +728,84 @@
       renderPrecinctChairs();
     }
 
+    function renderArticles() {
+      const container = document.getElementById('articles-list-container');
+      container.innerHTML = '';
+      if (!articlesData || articlesData.length === 0) {
+        container.innerHTML = '<p style="color: var(--text-muted);">No articles written yet. Click "+ Write New Article" above.</p>';
+        return;
+      }
+      articlesData.forEach((a, idx) => {
+        const card = document.createElement('div');
+        card.style = 'background: rgba(0,0,0,0.25); border: 1px solid var(--card-border); border-radius: 0.5rem; padding: 1.25rem; margin-bottom: 1.25rem;';
+        card.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <strong style="color: var(--accent); font-size: 1.05rem;">Article #${idx + 1}: ${a.title || 'Untitled'}</strong>
+            <button onclick="deleteArticle(${idx})" class="btn btn-danger">🗑️ Delete</button>
+          </div>
+          <div class="grid-2">
+            <div class="input-group" style="grid-column: span 2;">
+              <label>Article Headline</label>
+              <input type="text" value="${a.title || ''}" onchange="articlesData[${idx}].title = this.value" />
+            </div>
+            <div class="input-group">
+              <label>Author / Source</label>
+              <input type="text" value="${a.author || ''}" onchange="articlesData[${idx}].author = this.value" placeholder="e.g. Aaron Gonzalez, County Chair" />
+            </div>
+            <div class="input-group">
+              <label>Publication Date</label>
+              <input type="text" value="${a.date || ''}" onchange="articlesData[${idx}].date = this.value" placeholder="e.g. September 2026" />
+            </div>
+            <div class="input-group">
+              <label>Category Tag</label>
+              <input type="text" value="${a.category || ''}" onchange="articlesData[${idx}].category = this.value" placeholder="e.g. Press Release, County Update" />
+            </div>
+            <div class="input-group">
+              <label>Cover Image URL / Path</label>
+              <input type="text" value="${a.image || ''}" onchange="articlesData[${idx}].image = this.value" placeholder="images/hockley_landmarks_collage.jpg" />
+            </div>
+            <div class="input-group" style="grid-column: span 2;">
+              <label>Short Excerpt (Summary for Cards)</label>
+              <input type="text" value="${a.excerpt || ''}" onchange="articlesData[${idx}].excerpt = this.value" />
+            </div>
+            <div class="input-group" style="grid-column: span 2;">
+              <label>Full Article Body</label>
+              <textarea rows="6" onchange="articlesData[${idx}].content = this.value">${a.content || ''}</textarea>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function addNewArticle() {
+      articlesData.unshift({
+        id: 'article-' + Date.now(),
+        title: 'New Article Headline',
+        author: 'Hockley County Democratic Party',
+        date: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
+        category: 'County Update',
+        excerpt: '',
+        content: '',
+        image: 'images/hockley_landmarks_collage.jpg'
+      });
+      renderArticles();
+    }
+
+    function deleteArticle(idx) {
+      if (confirm('Delete this article?')) {
+        articlesData.splice(idx, 1);
+        renderArticles();
+      }
+    }
+
     function renderEvents() {
       const container = document.getElementById('events-container');
       container.innerHTML = '';
-
       if (!eventsData || eventsData.length === 0) {
         container.innerHTML = '<p style="color: var(--text-muted);">No events listed yet. Click "+ Add Event" above.</p>';
         return;
       }
-
       eventsData.forEach((ev, idx) => {
         const card = document.createElement('div');
         card.style = 'background: rgba(0,0,0,0.25); border: 1px solid var(--card-border); border-radius: 0.5rem; padding: 1.25rem; margin-bottom: 1rem;';
@@ -651,14 +846,7 @@
     }
 
     function addNewEvent() {
-      eventsData.push({
-        title: 'New Meeting / Event',
-        date: '',
-        time: '',
-        location: '',
-        description: '',
-        rsvp_link: ''
-      });
+      eventsData.push({ title: 'New Meeting / Event', date: '', time: '', location: '', description: '', rsvp_link: '' });
       renderEvents();
     }
 
@@ -667,13 +855,235 @@
       renderEvents();
     }
 
+    function renderGallery() {
+      const container = document.getElementById('gallery-container');
+      container.innerHTML = '';
+      if (!galleryData || galleryData.length === 0) {
+        container.innerHTML = '<p style="color: var(--text-muted);">No gallery cards listed yet.</p>';
+        return;
+      }
+      galleryData.forEach((g, idx) => {
+        const card = document.createElement('div');
+        card.style = 'background: rgba(0,0,0,0.25); border: 1px solid var(--card-border); border-radius: 0.5rem; padding: 1.25rem; margin-bottom: 1rem;';
+        card.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <strong style="color: var(--accent); font-size: 1.05rem;">Gallery Card #${idx + 1}</strong>
+            <button onclick="deleteGalleryCard(${idx})" class="btn btn-danger">🗑️ Delete</button>
+          </div>
+          <div class="grid-2">
+            <div class="input-group">
+              <label>Title</label>
+              <input type="text" value="${g.title || ''}" onchange="galleryData[${idx}].title = this.value" />
+            </div>
+            <div class="input-group">
+              <label>Tag / Category</label>
+              <input type="text" value="${g.tag || ''}" onchange="galleryData[${idx}].tag = this.value" />
+            </div>
+            <div class="input-group" style="grid-column: span 2;">
+              <label>Image Path / URL</label>
+              <input type="text" value="${g.image || ''}" onchange="galleryData[${idx}].image = this.value" />
+            </div>
+            <div class="input-group" style="grid-column: span 2;">
+              <label>Caption / Summary</label>
+              <textarea rows="2" onchange="galleryData[${idx}].caption = this.value">${g.caption || ''}</textarea>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function addNewPhotoCard() {
+      galleryData.push({ title: 'New Photo Spotlight', tag: 'Community', image: 'images/hockley_landmarks_collage.jpg', caption: '' });
+      renderGallery();
+    }
+
+    function deleteGalleryCard(idx) {
+      galleryData.splice(idx, 1);
+      renderGallery();
+    }
+
+    async function uploadImageToGitHub() {
+      const input = document.getElementById('image-upload-input');
+      const status = document.getElementById('upload-status');
+      const btn = document.getElementById('upload-img-btn');
+
+      if (!input.files || input.files.length === 0) {
+        alert('Please select an image file to upload.');
+        return;
+      }
+
+      const file = input.files[0];
+      const filename = file.name.toLowerCase().replace(/[^a-z0-9_.-]/g, '_');
+      const targetPath = 'images/' + filename;
+
+      btn.disabled = true;
+      btn.innerHTML = '⏳ Uploading image to GitHub...';
+      status.innerHTML = '<span style="color: #38bdf8;">Processing ' + filename + '...</span>';
+
+      const reader = new FileReader();
+      reader.onload = async function(e) {
+        try {
+          const base64 = e.target.result.split(',')[1];
+          // Check if file exists to get SHA
+          let existingSha = undefined;
+          try {
+            const check = await fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + targetPath, {
+              headers: { 'Authorization': 'Bearer ' + currentToken, 'Accept': 'application/vnd.github.v3+json' }
+            });
+            if (check.ok) {
+              const d = await check.json();
+              existingSha = d.sha;
+            }
+          } catch (e) {}
+
+          const uploadRes = await fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + targetPath, {
+            method: 'PUT',
+            headers: {
+              'Authorization': 'Bearer ' + currentToken,
+              'Accept': 'application/vnd.github.v3+json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              message: 'Upload ' + filename + ' via Officer Dashboard',
+              content: base64,
+              sha: existingSha,
+              branch: BRANCH
+            })
+          });
+
+          if (!uploadRes.ok) throw new Error('Upload failed: ' + (await uploadRes.text()));
+
+          status.innerHTML = '<span style="color: #10b981; font-weight: 700;">✅ Successfully uploaded! Path: <code>' + targetPath + '</code></span>';
+          btn.innerHTML = '📤 Upload Another Image';
+          btn.disabled = false;
+          input.value = '';
+        } catch (err) {
+          status.innerHTML = '<span style="color: #ef4444;">Error: ' + err.message + '</span>';
+          btn.innerHTML = '📤 Upload Image';
+          btn.disabled = false;
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+
+    async function publishNewPage() {
+      const title = document.getElementById('newpage-title').value.trim();
+      let slug = document.getElementById('newpage-slug').value.trim().toLowerCase().replace(/[^a-z0-9_-]/g, '');
+      const desc = document.getElementById('newpage-desc').value.trim();
+      const content = document.getElementById('newpage-content').value.trim();
+      const btn = document.getElementById('create-page-btn');
+      const status = document.getElementById('pagegen-status');
+
+      if (!title || !slug || !content) {
+        alert('Please fill out Page Title, URL Filename, and Content.');
+        return;
+      }
+
+      if (!slug.endsWith('.html')) slug += '.html';
+      const targetPath = slug;
+
+      btn.disabled = true;
+      btn.innerHTML = '⏳ Generating and Publishing Page...';
+
+      const fullPageHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${title} | Hockley County Democrats</title>
+  <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/state_party_clone.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Inter:wght@400;600;800&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body class="tx-clone">
+  <nav class="tx-clone-nav">
+    <div class="tx-clone-nav-center">
+      <a href="index.html" class="tx-clone-logo"><img src="images/logo.jpg" alt="Logo" class="tx-clone-logo-img"></a>
+      <div class="tx-clone-nav-links">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="about.html" class="nav-item">About Us</a>
+        <a href="events.html" class="nav-item">Events</a>
+        <a href="news.html" class="nav-item">News</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+      </div>
+    </div>
+    <div class="tx-clone-nav-right">
+      <a href="https://secure.actblue.com/donate/hockley-county-democratic-party-tx-1" class="tx-clone-btn-donate" target="_blank" rel="noopener noreferrer">DONATE</a>
+    </div>
+  </nav>
+
+  <header style="background: linear-gradient(rgba(11, 15, 25, 0.8), rgba(11, 15, 25, 0.95)), url('images/hockley_landmarks_collage.jpg') center/cover; padding: 5rem 10% 4rem; text-align: center; border-bottom: 2px solid var(--accent-orange);">
+    <h1 style="font-size: 2.75rem; font-family: 'Alfa Slab One', cursive; color: #fff; margin-bottom: 1rem;">${title}</h1>
+    ${desc ? '<p style="font-size: 1.2rem; color: #cbd5e1; max-width: 700px; margin: 0 auto;">' + desc + '</p>' : ''}
+  </header>
+
+  <main style="max-width: 900px; margin: 3.5rem auto; padding: 0 1.5rem;">
+    <div class="glass-card" style="padding: 2.5rem; line-height: 1.8; font-size: 1.1rem; color: #f1f5f9;">
+      ${content.replace(/\n/g, '<br>')}
+    </div>
+  </main>
+
+  <footer class="tx-clone-footer">
+    <div class="tx-clone-footer-logo">HOCKLEY COUNTY DEMOCRATS</div>
+    <p style="font-size: 0.85rem; border: 1px solid var(--glass-border); display: inline-block; padding: 1.5rem; border-radius: 4px; color: white;">Pol. Adv. paid for by the Hockley County Democratic Party. Not authorized by any candidate or candidate's committee.</p>
+    <div style="margin-top: 1.5rem;"><a href="standards.html" style="color: var(--text-muted); text-decoration: underline; font-size: 0.85rem;">Platform Disclaimers & Community Standards</a></div>
+  </footer>
+  <script src="js/cms_loader.js"></script>
+</body>
+</html>
+`;
+
+      try {
+        let existingSha = undefined;
+        try {
+          const check = await fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + targetPath, {
+            headers: { 'Authorization': 'Bearer ' + currentToken, 'Accept': 'application/vnd.github.v3+json' }
+          });
+          if (check.ok) {
+            const d = await check.json();
+            existingSha = d.sha;
+          }
+        } catch (e) {}
+
+        const b64 = btoa(unescape(encodeURIComponent(fullPageHtml)));
+        const res = await fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + targetPath, {
+          method: 'PUT',
+          headers: {
+            'Authorization': 'Bearer ' + currentToken,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            message: 'Create page ' + targetPath + ' via Officer Dashboard',
+            content: b64,
+            sha: existingSha,
+            branch: BRANCH
+          })
+        });
+
+        if (!res.ok) throw new Error(await res.text());
+
+        status.innerHTML = '<span style="color: #10b981; font-weight: 700;">🎉 Page published live! Link: <a href="../' + targetPath + '" target="_blank" style="color: #38bdf8; text-decoration: underline;">' + targetPath + '</a></span>';
+        btn.innerHTML = '🚀 Publish New Page Live';
+        btn.disabled = false;
+      } catch (err) {
+        status.innerHTML = '<span style="color: #ef4444;">Failed to create page: ' + err.message + '</span>';
+        btn.innerHTML = '🚀 Publish New Page Live';
+        btn.disabled = false;
+      }
+    }
+
     async function saveAllChanges() {
       const btn = document.getElementById('save-all-btn');
       btn.innerHTML = '⏳ Publishing to Website...';
       btn.disabled = true;
 
       try {
-        // Collect form values
+        // 1. Leadership
         leadershipData.chair = document.getElementById('lead-chair').value;
         leadershipData.chair_title = document.getElementById('lead-chair-title').value;
         leadershipData.vice_chair = document.getElementById('lead-vice').value;
@@ -683,6 +1093,16 @@
         leadershipData.social_media = document.getElementById('lead-social').value;
         leadershipData.social_media_title = document.getElementById('lead-social-title').value;
 
+        // 2. Banner
+        bannerData = {
+          active: document.getElementById('banner-active').checked,
+          text: document.getElementById('banner-text').value,
+          button_text: document.getElementById('banner-btn-text').value,
+          link: document.getElementById('banner-link').value,
+          bg_color: document.getElementById('banner-color').value
+        };
+
+        // 3. Settings
         settingsData.phone = document.getElementById('set-phone').value;
         settingsData.email = document.getElementById('set-email').value;
         settingsData.donate_link = document.getElementById('set-donate').value;
@@ -700,29 +1120,34 @@
         };
 
         // Push updates to GitHub
-        const [resS, resL, resE] = await Promise.all([
+        const [resS, resL, resE, resB, resA, resG] = await Promise.all([
           ghPut('data/settings.json', settingsData, settingsSha, 'Update site settings via Officer Dashboard'),
           ghPut('data/leadership.json', leadershipData, leadershipSha, 'Update leadership roster via Officer Dashboard'),
-          ghPut('data/events.json', eventsData, eventsSha, 'Update events via Officer Dashboard')
+          ghPut('data/events.json', eventsData, eventsSha, 'Update events via Officer Dashboard'),
+          ghPut('data/announcements.json', bannerData, bannerSha, 'Update banner via Officer Dashboard'),
+          ghPut('data/articles.json', articlesData, articlesSha, 'Update articles via Officer Dashboard'),
+          ghPut('data/gallery.json', galleryData, gallerySha, 'Update gallery via Officer Dashboard')
         ]);
 
         settingsSha = resS.content.sha;
         leadershipSha = resL.content.sha;
         eventsSha = resE.content.sha;
+        bannerSha = resB.content.sha;
+        articlesSha = resA.content.sha;
+        gallerySha = resG.content.sha;
 
-        // Show toast
         const toast = document.getElementById('toast');
         toast.style.display = 'block';
         setTimeout(() => { toast.style.display = 'none'; }, 4000);
 
         btn.innerHTML = '✅ Published Live!';
         setTimeout(() => {
-          btn.innerHTML = '💾 Save & Publish Changes';
+          btn.innerHTML = '💾 Save & Publish Live';
           btn.disabled = false;
         }, 2000);
       } catch (err) {
         alert('Failed to publish: ' + err.message);
-        btn.innerHTML = '💾 Save & Publish Changes';
+        btn.innerHTML = '💾 Save & Publish Live';
         btn.disabled = false;
       }
     }

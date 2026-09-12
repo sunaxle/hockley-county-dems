@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News & Updates | Hockley County Democrats</title>
+  <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/state_party_clone.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Inter:wght@400;600;800&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body class="tx-clone">
+
+  <nav class="tx-clone-nav">
+    <div id="google_translate_element" style="position: absolute; right: 1rem; top: 0rem; z-index: 1000; transform: scale(0.8); transform-origin: top right;"></div>
+    <div class="tx-clone-nav-socials">
+      <a href="https://www.facebook.com/HockleyCountyDemocrats" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      <a href="https://www.instagram.com/hockleycountydems/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.88z"/></svg></a>
+    </div>
+    <div class="tx-clone-nav-center">
+      <a href="index.html" class="tx-clone-logo"><img src="images/logo.jpg" alt="Logo" class="tx-clone-logo-img"></a>
+      <div class="tx-clone-nav-links">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="about.html" class="nav-item">About Us</a>
+        <a href="events.html" class="nav-item">Events</a>
+        <a href="news.html" class="nav-item" style="color: #38bdf8; font-weight: 800;">News & Updates 📰</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+      </div>
+    </div>
+    <div class="tx-clone-nav-right">
+      <a href="https://secure.actblue.com/donate/hockley-county-democratic-party-tx-1" class="tx-clone-btn-donate" target="_blank" rel="noopener noreferrer">DONATE</a>
+    </div>
+  </nav>
+
+  <header style="background: linear-gradient(rgba(11, 15, 25, 0.8), rgba(11, 15, 25, 0.95)), url('images/hockley_landmarks_collage.jpg') center/cover; padding: 5rem 10% 4rem; text-align: center; border-bottom: 2px solid var(--accent-orange);">
+    <h1 style="font-size: 3rem; font-family: 'Alfa Slab One', cursive; color: #fff; margin-bottom: 1rem;">News, Press & Updates</h1>
+    <p style="font-size: 1.25rem; color: #cbd5e1; max-width: 700px; margin: 0 auto;">Official news releases, party announcements, and community updates from the Hockley County Democratic Party.</p>
+  </header>
+
+  <main style="max-width: 1200px; margin: 3rem auto; padding: 0 1.5rem;">
+    <div id="articles-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+      <!-- Hydrated dynamically from data/articles.json -->
+    </div>
+  </main>
+
+  <footer class="tx-clone-footer">
+    <div class="tx-clone-footer-logo">HOCKLEY COUNTY DEMOCRATS</div>
+    <p style="font-size: 0.85rem; border: 1px solid var(--glass-border); display: inline-block; padding: 1.5rem; border-radius: 4px; color: white;">Pol. Adv. paid for by the Hockley County Democratic Party. Not authorized by any candidate or candidate's committee.</p>
+    <div style="margin-top: 1.5rem; display: flex; gap: 1.25rem; justify-content: center; align-items: center; flex-wrap: wrap;">
+      <a href="standards.html" style="color: var(--text-muted); text-decoration: underline; font-size: 0.85rem;">Platform Disclaimers & Community Standards</a>
+      <span style="color: var(--text-muted); font-size: 0.85rem;">•</span>
+      <a href="admin/" style="color: #facc15; font-weight: 700; text-decoration: none; font-size: 0.85rem; background: rgba(250, 204, 21, 0.1); padding: 0.3rem 0.75rem; border-radius: 4px; border: 1px solid rgba(250, 204, 21, 0.3);">🔐 Party Officer Portal</a>
+    </div>
+  </footer>
+
+  <script src="js/cms_loader.js"></script>
+</body>
+</html>
