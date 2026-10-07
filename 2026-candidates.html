@@ -1784,16 +1784,23 @@ District 88</h3>
 </div>
 </div>
 
-<!-- Google Translate -->
-  <script>
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'es,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-    }
-  </script>
-  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- Custom Style to Fix Spanish Translation Text Color -->
+<style>
+  html.translated-ltr, html.translated-ltr body, html.translated-ltr p, html.translated-ltr span, html.translated-ltr div {
+      color: #002060 !important; /* Use your exact dark blue hex code here */
+  }
+</style>
 
-  <script src="js/a11y.js"></script>
-  <script src="js/cms_loader.js"></script>
+<!-- Google Translate -->
+<script>
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'es,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+  }
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script src="js/a11y.js"></script>
+<script src="js/cms_loader.js"></script>
 </body>
 </html>
 
