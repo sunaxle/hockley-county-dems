@@ -1814,6 +1814,7 @@ District 88</h3>
 	
 
   <!-- Footer -->
+<head>	
 <body>
 <html>
   <footer class="tx-clone-footer">
@@ -1845,5 +1846,31 @@ District 88</h3>
 
   <script src="js/a11y.js"></script>
   <script src="js/cms_loader.js"></script>
+
+<!-- Other scripts and meta tags -->
+    
+    <!-- Custom Style to Fix Spanish Translation Text Color and Protect Footer -->
+    <style>
+      /* 1. KEEP MAIN BODY TEXT DARK BLUE */
+      html.translated-ltr, 
+      html.translated-ltr body, 
+      html.translated-ltr p, 
+      html.translated-ltr span, 
+      html.translated-ltr div {
+          color: #002060 !important;
+      }
+
+      /* 2. FORCE FOOTER COLORS TO MATCH THE ENGLISH SIDE */
+      html.translated-ltr #footer-outer,
+      html.translated-ltr #footer-outer p,
+      html.translated-ltr #footer-outer span,
+      html.translated-ltr #footer-outer div,
+      html.translated-ltr #footer-outer .widget,
+      html.translated-ltr #footer-outer #copyright,
+      html.translated-ltr #footer-outer a {
+          color: #ffffff !important;
+      }
+    </style>
+</head>
 </body>
 </html>
