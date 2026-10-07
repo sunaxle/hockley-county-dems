@@ -1791,18 +1791,23 @@ District 88</h3>
   }
 </style>
 
-<!-- Google Translate -->
-<script>
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'es,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+<!-- Custom Style to Fix Spanish Translation Text Color (Excluding Footer) -->
+<style>
+  /* Target elements only if they are NOT inside or part of a footer container */
+  html.translated-ltr :not(footer):not(.site-footer):not(#footer) {
+      color: #002060 !important; /* Your exact dark blue hex code */
   }
-</script>
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-<script src="js/a11y.js"></script>
-<script src="js/cms_loader.js"></script>
-</body>
-</html>
+  /* Deep target generic text elements while protecting footer children */
+  html.translated-ltr div:not(footer):not(.site-footer):not(#footer) > p,
+  html.translated-ltr div:not(footer):not(.site-footer):not(#footer) > span,
+  html.translated-ltr div:not(footer):not(.site-footer):not(#footer) > a,
+  html.translated-ltr div:not(footer):not(.site-footer):not(#footer) > h1,
+  html.translated-ltr div:not(footer):not(.site-footer):not(#footer) > h2,
+  html.translated-ltr div:not(footer):not(.site-footer):not(#footer) > h3 {
+      color: #002060 !important;
+  }
+</style>
 
 	
 
