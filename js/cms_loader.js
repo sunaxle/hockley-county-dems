@@ -1,5 +1,5 @@
 // Base Configuration
-const OWNER = window.location.hostname.split('.')[0] === 'localhost' ? 'sunaxle' : window.location.hostname.split('.')[0];
+const OWNER = window.location.hostname.includes('github.io') ? window.location.hostname.split('.')[0] : 'sunaxle';
 const REPO = 'hockley-county-dems';
 const BRANCH = 'main';
 
@@ -47,7 +47,6 @@ async function checkAuth() {
   }
 
   try {
-    // Validate token against GitHub API
     const res = await fetch('https://github.com', {
       headers: { 'Authorization': 'Bearer ' + currentToken }
     });
