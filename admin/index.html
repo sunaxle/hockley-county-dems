@@ -1033,10 +1033,12 @@
     <div style="margin-top: 1.5rem;"><a href="standards.html" style="color: var(--text-muted); text-decoration: underline; font-size: 0.85rem;">Platform Disclaimers & Community Standards</a></div>
   </footer>
   <script src="js/cms_loader.js"></script>
-</body>
-</html>
-`;
-
+  <script>
+    async function publishPage(targetPath, fullPageHtml) {
+      const btn = document.getElementById('publish-btn');
+      const status = document.getElementById('publish-status');
+      btn.innerHTML = '⏳ Publishing Page Live...';
+      btn.disabled = true;
       try {
         let existingSha = undefined;
         try {
